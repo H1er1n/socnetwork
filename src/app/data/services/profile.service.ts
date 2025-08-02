@@ -1,0 +1,51 @@
+import { HttpClient } from '@angular/common/http';
+import { inject, Injectable, signal } from '@angular/core';
+import { Profile } from '../interfaces/profile.interface';
+import { url } from 'inspector';
+import { Pageble } from '../interfaces/pageble.interface';
+import { map, tap } from 'rxjs';
+import { AsyncPipe } from '@angular/common'; 
+
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ProfileService {
+
+
+  http = inject(HttpClient)
+  baseAPIURL = 'https://icherniakov.ru/yt-course/'
+  me = signal<Profile | null>(null)
+
+  getTestAccounts(){
+   return this.http.get<Profile[]>(`${this.baseAPIURL}account/test_accounts`)
+
+  }
+
+  getAccount(id: string){
+   return this.http.get<Profile>(`${this.baseAPIURL}account/${id}`)
+
+  }
+
+  getSubscribersShortList(subsAmount = 3) {
+    return this.http.get<Pageble<Profile>>(`${this.baseAPIURL}account/subscribers/`)
+    .pipe(
+      map(res => res.items.slice(0, subsAmount))
+    )
+  }
+
+  getMe() {
+    return this.http.get<Profile>(`${this.baseAPIURL}account/me`)
+    .pipe(
+      tap(res => this.me.set(res))
+    )
+  }
+
+  patchProfile(profile: Partial<Profile>) {
+    return this.http.patch<Profile>(
+      `${this.baseAPIURL}account/me`,
+      profile
+    )
+  }
+  
+}

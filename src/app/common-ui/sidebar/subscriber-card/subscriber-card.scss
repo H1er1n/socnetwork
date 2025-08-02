@@ -1,0 +1,37 @@
+:host {
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    grid-gap: 12px;
+    padding: 8px 0;
+    align-items: center;
+}
+
+.subscriber-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+.mb16 {
+    margin-bottom: 16px;
+}
+
+.mb32{
+    margin-bottom: 32px;
+}
+
+.mb60 {
+    margin-bottom: 60px;
+}
+
+.ml16 {
+    margin-left: 16px;
+}
+
+.mb20 {
+    margin-bottom: 20px;
+}
+
+.mt20 {
+    margin-bottom: 20px;
+}
