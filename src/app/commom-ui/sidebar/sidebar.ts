@@ -6,11 +6,12 @@ import { RouterLink } from '@angular/router';
 import { ImgUrlPipe } from '../../helpers/pipes/img-url-pipe';
 import { AsyncPipe } from '@angular/common'; 
 import { firstValueFrom } from 'rxjs';
+import { RouterLinkActive } from '@angular/router';
 
 
 @Component({
   selector: 'app-sidebar',
-  imports: [Svg, SubscriberCard, RouterLink, AsyncPipe],
+  imports: [Svg, SubscriberCard, RouterLink, AsyncPipe, RouterLinkActive],
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.scss'
 })

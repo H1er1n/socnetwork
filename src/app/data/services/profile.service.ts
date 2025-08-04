@@ -16,6 +16,7 @@ export class ProfileService {
   http = inject(HttpClient)
   baseAPIURL = 'https://icherniakov.ru/yt-course/'
   me = signal<Profile | null>(null)
+  filteredProfiles = signal<Profile[]>([])
 
   getTestAccounts(){
    return this.http.get<Profile[]>(`${this.baseAPIURL}account/test_accounts`)
@@ -57,4 +58,13 @@ export class ProfileService {
     )
   }
   
+  filterProfiles(params: Record<string, any>) {
+   return this.http.get<Pageble<Profile>>(`${this.baseAPIURL}account/accounts`,
+    {
+      params
+    }
+   ).pipe(
+    tap(res => this.filteredProfiles.set(res.items))
+   )
+  }
 }
