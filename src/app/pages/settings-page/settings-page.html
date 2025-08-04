@@ -1,5 +1,5 @@
 
-    <app-profile-header></app-profile-header>
+<app-profile-header></app-profile-header>
 
 <form class="profile-form__wrapper" [formGroup]="form">  
     <div class="profile-form">
@@ -23,6 +23,11 @@
         <label class="sn-form-label">
             <span class="sn-form-label__text">О себе</span>
             <textarea class="sn-form-input sn-textarea" type="text" formControlName="description"></textarea>
+        </label>
+
+        <label class="sn-form-label">
+            <span class="sn-form-label__text">Аватар</span>
+            <app-avatar-upload></app-avatar-upload>
         </label>
 
         <label class="sn-form-label">
